@@ -3,23 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AstroClicker</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Astroclicker</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        #game { margin: 20px; }
+        #upgrade-list { list-style-type: none; padding: 0; }
+        li { cursor: pointer; margin: 5px 0; }
+        li:hover { text-decoration: underline; }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>AstroClicker</h1>
-        <div id="asteroid" class="clickable">
-            <img src="asteroid.png" alt="Asteroid" />
-        </div>
+    <div id="game">
+        <h1>Astroclicker</h1>
         <div id="earnings">Asteroids: 0</div>
         <div id="offline-earnings">Offline Earnings: 0</div>
-        <div id="upgrades">
-            <h2>Upgrades</h2>
-            <ul id="upgrade-list"></ul>
-        </div>
-        <button id="save-button">Save Game</button>
+        <button onclick="clickAsteroid()">Click Asteroid</button>
+        <button onclick="startAutoClicker()">Start Auto Clicker</button>
+        <button onclick="stopAutoClicker()">Stop Auto Clicker</button>
+        <h2>Upgrades</h2>
+        <ul id="upgrade-list"></ul>
     </div>
-    <script src="script.js"></script>
+    <script src="script.js"></script> <!-- Link to your JavaScript file -->
 </body>
 </html>
