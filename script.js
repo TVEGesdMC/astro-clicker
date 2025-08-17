@@ -1,90 +1,79 @@
-let asteroidCount = 0;
-let autoClickers = 0;
+let asteroids = 0;
 let offlineEarnings = 0;
-let autoClickerCost = 50;
-let upgradeCost = 10;
+let autoClickerActive = false;
 let autoClickerInterval;
+let upgrades = [
+    { name: "Asteroid Miner", cost: 50, multiplier: 1 },
+    { name: "Asteroid Factory", cost: 200, multiplier: 5 },
+    { name: "Asteroid Planet", cost: 1000, multiplier: 20 }
+];
 
-const asteroidElement = document.getElementById('asteroid');
-const countElement = document.getElementById('count');
-const upgradeButton = document.getElementById('upgradeButton');
-const autoClickerButton = document.getElementById('autoClickerButton');
-const autoClickerCountElement = document.getElementById('autoClickerCount');
-const offlineEarningsElement = document.getElementById('offlineEarnings');
-
-// Load saved data from localStorage
-function loadGame() {
-    const savedAsteroids = localStorage.getItem('asteroidCount');
-    const savedAutoClickers = localStorage.getItem('autoClickers');
-    const savedOfflineEarnings = localStorage.getItem('offlineEarnings');
-
-    if (savedAsteroids) {
-        asteroidCount = parseInt(savedAsteroids);
-    }
-    if (savedAutoClickers) {
-        autoClickers = parseInt(savedAutoClickers);
-    }
-    if (savedOfflineEarnings) {
-        offlineEarnings = parseInt(savedOfflineEarnings);
-    }
-
-    updateDisplay();
-}
-
-// Save game data to localStorage
-function saveGame() {
-    localStorage.setItem('asteroidCount', asteroidCount);
-    localStorage.setItem('autoClickers', autoClickers);
-    localStorage.setItem('offlineEarnings', offlineEarnings);
-}
-
-// Update the display
 function updateDisplay() {
-    countElement.innerText = `Asteroids: ${asteroidCount}`;
-    autoClickerCountElement.innerText = `Auto-Clickers: ${autoClickers}`;
-    offlineEarningsElement.innerText = `Offline Earnings: ${offlineEarnings}`;
+    document.getElementById('earnings').innerText = `Asteroids: ${asteroids}`;
+    document.getElementById('offline-earnings').innerText = `Offline Earnings: ${offlineEarnings}`;
 }
 
-// Click on the asteroid
-asteroidElement.addEventListener('click', () => {
-    asteroidCount++;
+function generateUpgradeList() {
+    const upgradeList = document.getElementById('upgrade-list');
+    upgradeList.innerHTML = '';
+    upgrades.forEach((upgrade, index) => {
+        const li = document.createElement('li');
+        li.innerText = `${upgrade.name} - Cost: ${upgrade.cost} (x${upgrade.multiplier})`;
+        li.onclick = () => buyUpgrade(index);
+        upgradeList.appendChild(li);
+    });
+}
+
+function buyUpgrade(index) {
+    if (asteroids >= upgrades[index].cost) {
+        asteroids -= upgrades[index].cost;
+        offlineEarnings += upgrades[index].multiplier;
+        updateDisplay();
+        generateUpgradeList();
+    }
+}
+
+document.getElementById('asteroid').onclick = () => {
+    asteroids++;
     updateDisplay();
-    saveGame();
-});
+};
 
-// Upgrade button
-upgradeButton.addEventListener('click', () => {
-    if (asteroidCount >= upgradeCost) {
-        asteroidCount -= upgradeCost;
-        upgradeCost *= 2; // Increase cost for next upgrade
+document.getElementById('save-button').onclick = saveGame;
+
+function saveGame() {
+    const gameData = {
+        asteroids,
+        offlineEarnings,
+        autoClickerActive
+    };
+    localStorage.setItem('astroclicker', JSON.stringify(gameData));
+}
+
+function loadGame() {
+    const savedData = localStorage.getItem('astroclicker');
+    if (savedData) {
+        const gameData = JSON.parse(savedData);
+        asteroids = gameData.asteroids;
+        offlineEarnings = gameData.offlineEarnings;
+        autoClickerActive = gameData.autoClickerActive;
         updateDisplay();
-        saveGame();
     }
-});
+}
 
-// Auto-clicker button
-autoClickerButton.addEventListener('click', () => {
-    if (asteroidCount >= autoClickerCost) {
-        asteroidCount -= autoClickerCost;
-        autoClickers++;
-        autoClickerCost *= 2; // Increase cost for next auto-clicker
-        updateDisplay();
-        saveGame();
-        startAutoClicker();
-    }
-});
-
-// Start auto-clicker
 function startAutoClicker() {
-    if (!autoClickerInterval) {
+    if (!autoClickerActive) {
+        autoClickerActive = true;
         autoClickerInterval = setInterval(() => {
-            asteroidCount += autoClickers;
-            offlineEarnings += autoClickers; // Add to offline earnings
+            asteroids += 1; // Adjust the increment based on your game design
             updateDisplay();
-            saveGame();
         }, 1000);
     }
 }
 
-// Load game on startup
-loadGame();
+window.onload = () => {
+    loadGame();
+    generateUpgradeList();
+    if (autoClickerActive) {
+        startAutoClicker();
+    }
+};
