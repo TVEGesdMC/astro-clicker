@@ -4,32 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Astroclicker</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-        #upgrade-list {
-            list-style-type: none;
-            padding: 0;
-        }
-        li {
-            cursor: pointer;
-            margin: 5px 0;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Astroclicker</h1>
-    <div>
-        <h2 id="earnings">Asteroids: 0</h2>
-        <h2 id="offline-earnings">Offline Earnings: 0</h2>
-        <button id="click-button">Click Asteroid</button>
-        <button onclick="startAutoClicker()">Start Auto Clicker</button>
-        <button onclick="stopAutoClicker()">Stop Auto Clicker</button>
-        <h2>Upgrades</h2>
-        <ul id="upgrade-list"></ul>
+    <div class="game-container">
+        <h1>Astroclicker</h1>
+        <div class="resource-display">
+            <p>AstroPoints: <span id="astroPoints">0</span></p>
+        </div>
+        <button id="clickButton" onclick="clickForPoints()">Click to Gather AstroPoints</button>
+        <div class="upgrade-menu">
+            <h2>Upgrades</h2>
+            <button onclick="upgradeClickSpeed()">Faster Clicking (100 AP)</button>
+            <button onclick="buyMiningDrone()">Mining Drone (500 AP)</button>
+            <button onclick="buyAdvancedDrone()">Advanced Mining Drone (5,000 AP)</button>
+            <button onclick="buySpaceStation()">Space Station (50,000 AP)</button>
+        </div>
     </div>
-    <script src="script.js"></script> <!-- Link to your JavaScript file -->
+    <script src="script.js"></script>
 </body>
 </html>
