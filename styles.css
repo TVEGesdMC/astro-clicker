@@ -1,30 +1,63 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #282c34;
-    color: white;
+    font-family: 'Orbitron', sans-serif;
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    color: #e94560;
     text-align: center;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
-    margin: 0 auto;
     padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    max-width: 600px;
+    margin: auto;
 }
 
-.clickable {
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+#asteroid {
     width: 100px;
     height: 100px;
-    background: url('asteroid.png') no-repeat center center;
+    background: url('https://example.com/asteroid.png') no-repeat center center;
     background-size: cover;
     cursor: pointer;
-    margin: 20px auto;
+    transition: transform 0.1s;
+}
+
+#asteroid:active {
+    transform: scale(0.95);
+}
+
+#earnings, #offline-earnings {
+    font-size: 1.5em;
+    margin: 20px 0;
 }
 
 #upgrades {
-    margin-top: 20px;
+    margin-top: 30px;
+}
+
+#upgrade-list {
+    list-style-type: none;
+    padding: 0;
 }
 
 button {
+    background-color: #e94560;
+    color: white;
+    border: none;
     padding: 10px 20px;
-    font-size: 16px;
+    border-radius: 5px;
     cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #d83d50;
 }
