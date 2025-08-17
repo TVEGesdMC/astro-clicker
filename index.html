@@ -5,19 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Astroclicker</title>
     <style>
-        body { font-family: Arial, sans-serif; }
-        #game { margin: 20px; }
-        #upgrade-list { list-style-type: none; padding: 0; }
-        li { cursor: pointer; margin: 5px 0; }
-        li:hover { text-decoration: underline; }
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #upgrade-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            cursor: pointer;
+            margin: 5px 0;
+        }
     </style>
 </head>
 <body>
-    <div id="game">
-        <h1>Astroclicker</h1>
-        <div id="earnings">Asteroids: 0</div>
-        <div id="offline-earnings">Offline Earnings: 0</div>
-        <button onclick="clickAsteroid()">Click Asteroid</button>
+    <h1>Astroclicker</h1>
+    <div>
+        <h2 id="earnings">Asteroids: 0</h2>
+        <h2 id="offline-earnings">Offline Earnings: 0</h2>
+        <button id="click-button">Click Asteroid</button>
         <button onclick="startAutoClicker()">Start Auto Clicker</button>
         <button onclick="stopAutoClicker()">Stop Auto Clicker</button>
         <h2>Upgrades</h2>
