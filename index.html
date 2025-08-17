@@ -6,15 +6,17 @@
     <title>AstroClicker</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body oncontextmenu="return false;">
     <div class="container">
-        <h1>AstroClicker</h1>
+        <h1 id="storeName">Astro Store</h1>
         <div id="asteroid" class="asteroid">🌑</div>
         <div id="count">Asteroids: 0</div>
         <button id="upgradeButton">Upgrade (Cost: 10 Asteroids)</button>
         <button id="autoClickerButton">Buy Auto-Clicker (Cost: 50 Asteroids)</button>
         <div id="autoClickerCount">Auto-Clickers: 0</div>
         <div id="offlineEarnings">Offline Earnings: 0</div>
+        <button id="renameButton">Rename Store</button>
+        <input type="text" id="newStoreName" placeholder="Enter new store name" style="display:none;">
     </div>
     <script src="script.js"></script>
 </body>
