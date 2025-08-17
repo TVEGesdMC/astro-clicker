@@ -3,20 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Futuristic Clicker Game</title>
+    <title>AstroClicker</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>Futuristic Clicker Game</h1>
-        <div class="score">
-            <h2>Points: <span id="points">0</span></h2>
-        </div>
-        <button id="clickButton">Click Me!</button>
-        <div class="upgrades">
-            <h3>Upgrades</h3>
-            <button id="upgradeButton">Upgrade Click Power (Cost: 10 points)</button>
-        </div>
+        <h1>AstroClicker</h1>
+        <div id="asteroid" class="asteroid">🌑</div>
+        <div id="count">Asteroids: 0</div>
+        <button id="upgradeButton">Upgrade (Cost: 10 Asteroids)</button>
+        <button id="autoClickerButton">Buy Auto-Clicker (Cost: 50 Asteroids)</button>
+        <div id="autoClickerCount">Auto-Clickers: 0</div>
+        <div id="offlineEarnings">Offline Earnings: 0</div>
     </div>
     <script src="script.js"></script>
 </body>
